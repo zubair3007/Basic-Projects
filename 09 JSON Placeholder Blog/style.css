@@ -1,0 +1,36 @@
+ body {
+     font-family: Arial, sans-serif;
+     max-width: 800px;
+     margin: 0 auto;
+     padding: 20px;
+ }
+
+ .post {
+     border: 1px solid #ddd;
+     padding: 15px;
+     margin-bottom: 15px;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+
+ .post h2 {
+     margin: 0 0 10px;
+     font-size: 1.5em;
+ }
+
+ .comments {
+     margin-top: 10px;
+     padding-left: 20px;
+     display: none;
+ }
+
+ .comment {
+     border-top: 1px solid #eee;
+     padding: 10px 0;
+ }
+
+ #loading {
+     text-align: center;
+     padding: 20px;
+     display: none;
+ }
