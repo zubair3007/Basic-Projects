@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="success-popup" id="successPopup">Your message was sent successfully! 🎉</div>
+
+<form id="contactForm">
+    <label>
+        Name:
+        <input type="text" id="name" />
+        <div class="error" id="nameError"></div>
+    </label>
+
+    <label>
+        Email:
+        <input type="email" id="email" />
+        <div class="error" id="emailError"></div>
+    </label>
+
+    <label>
+        Message:
+        <textarea id="message" rows="4"></textarea>
+        <div class="error" id="messageError"></div>
+    </label>
+
+    <button type="submit">Send</button>
+</form>
+
+ <script src="./app.js"   ></script>
+</body>
+</html>
