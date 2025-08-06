@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
+<div class="container">
+    <h1>Infinite Scroll +  Pagination</h1>
+
+        <div class="mode-toggle">
+            <button id="infiniteScrollBtn" class="active" >Infinite Scroll</button>
+            <button id="paginationBtn">Pagination</button>
+        </div>
+
+        <div id="postList" ></div>
+        <div id="loading" class="loading">Loading...</div>
+        <div id="paginationControls" class="pagination" style="display:none;">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">next</button>
+            <button id="Last" style="display:none;">Last</button>
+        </div>
+</div>
+
+
+
+
+
     <script src="./app.js"></script>
 </body>
 </html>
