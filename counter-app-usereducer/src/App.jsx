@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useReducer } from "react";
+import CounterForm from './Components/CounterForm';
+import CounterList from './Components/CounterList';
 
-function App() {
-  const [count, setCount] = useState(0)
+import './App.css';
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+// Reducer function
+function counterReducer(state, action) {
+  switch (action.type) {
+    case 'ADD_COUNTER':
+      return [...state, { id: Date.now(), name: action.payload, count: 0 }];
+    case 'INCREMENT':
+      return state.map(counter =>
+        counter.id === action.payload ? { ...counter, count: counter.count + 1 } : counter
+      );
+    case 'DECREMENT':
+      return state.map(counter =>
+        counter.id === action.payload ? { ...counter, count: Math.max(0, counter.count - 1) } : counter
+      );
+    case 'RESET_ALL':
+      return state.map(counter => ({ ...counter, count: 0 }));
+    default:
+      return state;
+  }
 }
 
-export default App
+function App() {
+  const [counters, dispatch] = useReducer(counterReducer, []);
+
+  return (
+    <div className="app-container">
+      <div className="tracker-container">
+        <h1>Counter App</h1>
+        <CounterForm onAddCounter={(name) => dispatch({ type: 'ADD_COUNTER', payload: name })} />
+        <CounterList
+          counters={counters}
+          onIncrement={(id) => dispatch({ type: 'INCREMENT', payload: id })}
+          onDecrement={(id) => dispatch({ type: 'DECREMENT', payload: id })}
+          onResetAll={() => dispatch({ type: 'RESET_ALL' })}
+        />
+      </div>
+    </div>
+  );
+}
+
+  export default App
