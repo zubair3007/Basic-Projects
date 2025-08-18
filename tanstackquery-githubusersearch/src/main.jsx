@@ -1,10 +1,27 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './index.css';
 
 import App from './App.jsx'
+import {QueryClient, QueryCLientProvider} from'@tanstack/react-query';
+import {ReactQueryDEvtools} from '@tanstack/react-query-devtools';
 
-createRoot(document.getElementById('root')).render(
+//Create a query client with default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,  //Retry failed queries once
+      staleTime: 5*1000, //Data is fetched for 5 seconds, no refetch needed
+    },
+  },
+});
+
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <QueryCLientProvider client={queryClient}>
+      <App />
+      <ReactQueryDEvtools initialIsOpen={false} /> {/*Debug PAnel for Queries */}
+    </QueryCLientProvider>
+  </StrictMode>
+);
