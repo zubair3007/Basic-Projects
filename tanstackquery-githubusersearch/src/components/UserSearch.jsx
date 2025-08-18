@@ -105,7 +105,7 @@ export default function UserSearch() {
               }}
               disabled={favourites.includes(user.login)}
             >
-              {favourites.includes(user.login) ? "Favorited" : "Favorite"}
+              {favourites.includes(user.login) ? "Favourited" : "Favourite"}
             </button>
           </div>
         )}
